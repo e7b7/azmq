@@ -592,12 +592,13 @@ TEST_CASE( "Socket Monitor", "[socket]" ) {
     CHECK(client_monitor.events_[2].e == ZMQ_EVENT_HANDSHAKE_SUCCEEDED);
     CHECK(client_monitor.events_[3].e == ZMQ_EVENT_MONITOR_STOPPED);
 
-    REQUIRE(server_monitor.events_.size() == 5);
+    REQUIRE(server_monitor.events_.size() == 6);
     CHECK(server_monitor.events_[0].e == ZMQ_EVENT_LISTENING);
     CHECK(server_monitor.events_[1].e == ZMQ_EVENT_ACCEPTED);
     CHECK(server_monitor.events_[2].e == ZMQ_EVENT_HANDSHAKE_SUCCEEDED);
     CHECK(server_monitor.events_[3].e == ZMQ_EVENT_CLOSED);
-    CHECK(server_monitor.events_[4].e == ZMQ_EVENT_MONITOR_STOPPED);
+    CHECK(server_monitor.events_[4].e == ZMQ_EVENT_DISCONNECTED);
+    CHECK(server_monitor.events_[5].e == ZMQ_EVENT_MONITOR_STOPPED);
 }
 
 TEST_CASE( "Attach Method", "[socket]" ) {
